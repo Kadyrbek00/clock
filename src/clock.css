@@ -1,28 +1,36 @@
 .clock {
+    position: relative;
     width: 200px;
     height: 200px;
-    border: 1px solid black;
+    border: 2px solid #000;
     border-radius: 50%;
-    position: relative;
 }
 
-.clock-hand {
-    width: 2px;
-    height: 90px;
-    background-color: black;
+.hand {
     position: absolute;
-    top: 3%;
-    left: 48%;
+    top: 15%;
+    left: 50%;
     transform-origin: bottom center;
-    transition: transform 1s steps(2, end);
+    background-color: #000;
+    transition: transform 0.5s ease;
 }
 
-.clock-hand::before {
-    content: '';
+.seconds-hand {
+    margin-top: -10px;
     width: 2px;
-    height: 10px;
-    background-color: black;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    height: 80px;
+    transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.minutes-hand {
+    width: 3px;
+    height: 70px;
+    transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.hours-hand {
+    margin-top: 17px;
+    width: 5px;
+    height: 50px;
+    transform: translate(-50%, -100%) rotate(0deg);
 }

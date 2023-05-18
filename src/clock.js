@@ -2,11 +2,23 @@ import React, { useState, useEffect } from 'react';
 import './clock.css'
 
 const DigitalClock = () => {
-    const [rotation, setRotation] = useState(0);
+    const [secondsRotation, setSecondsRotation] = useState(0);
+    const [minutesRotation, setMinutesRotation] = useState(0);
+    const [hoursRotation, setHoursRotation] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setRotation(rotation => rotation + 6);
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours();
+
+            setSecondsRotation((secondsRotation) => (secondsRotation + 4));
+            const minutesRotation = (minutes / 60) * 360;
+            const hoursRotation = (hours / 12) * 360;
+
+            setMinutesRotation(minutesRotation);
+            setHoursRotation(hoursRotation);
         }, 1000);
 
         return () => {
@@ -16,7 +28,9 @@ const DigitalClock = () => {
 
     return (
         <div className="clock">
-            <div className="clock-hand" style={{ transform: `rotate(${rotation}deg)` }}></div>
+            <div className="hand seconds-hand" style={{ transform: `rotate(${secondsRotation}deg)` }}></div>
+            <div className="hand minutes-hand" style={{ transform: `rotate(${minutesRotation}deg)` }}></div>
+            <div className="hand hours-hand" style={{ transform: `rotate(${hoursRotation}deg)` }}></div>
         </div>
     );
 };
